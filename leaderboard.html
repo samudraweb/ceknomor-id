@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaderboard Kontributor | ceknomor.id</title>
+  <meta name="description" content="Top kontributor ceknomor.id — pengguna paling aktif membangun database anti penipuan Indonesia.">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <style>
+    .lb-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.75rem; margin-bottom: 2rem; }
+
+    .podium-card {
+      background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: var(--r-xl); padding: 1.5rem 1.25rem;
+      display: flex; flex-direction: column; align-items: center; gap: 0.625rem;
+      text-align: center; transition: border-color var(--ease);
+    }
+    .podium-card:hover { border-color: var(--border-hover); }
+    .podium-1 { order: 2; }
+    .podium-2 { order: 1; }
+    .podium-3 { order: 3; }
+
+    .podium-avatar {
+      width: 52px; height: 52px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.0625rem; font-weight: 700; color: #fff;
+      position: relative;
+    }
+    .podium-1 .podium-avatar { background: var(--brand); width: 64px; height: 64px; font-size: 1.25rem; }
+    .podium-2 .podium-avatar { background: var(--bg-3); color: var(--t-1); }
+    .podium-3 .podium-avatar { background: var(--bg-3); color: var(--t-1); }
+
+    .podium-rank-icon {
+      position: absolute; top: -12px; right: -6px;
+      width: 22px; height: 22px;
+    }
+    .podium-rank-icon.r1 { color: #EAB308; }
+    .podium-rank-icon.r2 { color: #94A3B8; }
+    .podium-rank-icon.r3 { color: #B45309; }
+    .podium-rank-icon svg { width: 22px; height: 22px; }
+
+    .podium-name { font-size: 0.9375rem; font-weight: 700; color: var(--t-1); }
+    .podium-score { font-size: 0.75rem; color: var(--t-3); }
+    .podium-contrib { font-size: 0.8125rem; font-weight: 600; color: var(--t-2); }
+
+    .lb-table { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; }
+    .lb-thead {
+      display: grid; grid-template-columns: 48px 1fr 100px 80px 120px;
+      padding: 0.625rem 1.125rem;
+      background: var(--bg-3); border-bottom: 1px solid var(--border);
+      font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--t-3);
+    }
+    .lb-row {
+      display: grid; grid-template-columns: 48px 1fr 100px 80px 120px;
+      align-items: center; padding: 0.875rem 1.125rem;
+      border-bottom: 1px solid var(--border);
+      transition: background var(--ease);
+    }
+    .lb-row:last-child { border-bottom: none; }
+    .lb-row:hover { background: var(--bg-3); }
+
+    .lb-rank { font-size: 0.875rem; font-weight: 700; color: var(--t-3); }
+    .lb-user { display: flex; align-items: center; gap: 0.625rem; }
+    .lb-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--bg-3); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 0.6875rem; font-weight: 700; color: var(--t-1); flex-shrink: 0; }
+    .lb-name { font-size: 0.875rem; font-weight: 600; color: var(--t-1); }
+    .lb-badge-wrap { margin-top: 0.1rem; }
+    .lb-contrib { font-size: 0.875rem; font-weight: 600; color: var(--t-1); }
+    .lb-helpful { font-size: 0.875rem; color: var(--t-2); }
+
+    .trust-bar-wrap { display: flex; align-items: center; gap: 0.5rem; }
+    .trust-num { font-size: 0.8125rem; font-weight: 700; min-width: 28px; }
+    .trust-bar { flex: 1; height: 4px; background: var(--bg-0); border-radius: 2px; overflow: hidden; }
+    .trust-fill { height: 100%; border-radius: 2px; }
+
+    @media (max-width: 900px) {
+      .lb-grid { grid-template-columns: 1fr; }
+      .podium-1, .podium-2, .podium-3 { order: unset; }
+      .lb-thead, .lb-row { grid-template-columns: 40px 1fr 80px; }
+      .lb-contrib, .lb-helpful { display: none; }
+    }
+    @media (max-width: 600px) {
+      .lb-thead { display: none; }
+      .lb-row { grid-template-columns: 40px 1fr auto; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="/" class="logo">
+        <div class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <span class="logo-name">cek<span>nomor</span>.id</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Beranda</a></li>
+        <li><a href="/trending/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>Trending</a></li>
+        <li><a href="/leaderboard/" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 010-5H6"/><path d="M18 9h1.5a2.5 2.5 0 000-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0012 0V2z"/></svg>Leaderboard</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="btn btn-primary btn-sm" id="btnLogin" onclick="openLoginModal()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Masuk
+        </button>
+        <button class="hamburger-btn" onclick="toggleDrawer()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="page-head">
+  <div class="container">
+    <h1>Leaderboard Kontributor</h1>
+    <p>Pengguna paling aktif membangun database anti penipuan Indonesia</p>
+  </div>
+</div>
+
+<div class="container" style="padding-top:1.5rem;padding-bottom:4rem;">
+  <!-- Period Filter -->
+  <div class="filter-row" style="margin-bottom:1.5rem;" id="periodFilter">
+    <button class="filter-pill active" onclick="filterPeriod('all',this)">Semua Waktu</button>
+    <button class="filter-pill" onclick="filterPeriod('month',this)">Bulan Ini</button>
+    <button class="filter-pill" onclick="filterPeriod('week',this)">Minggu Ini</button>
+  </div>
+
+  <!-- Podium Top 3 -->
+  <div class="lb-grid" id="podiumGrid"></div>
+
+  <!-- Full Table -->
+  <div class="lb-table">
+    <div class="lb-thead">
+      <div>Rank</div>
+      <div>Kontributor</div>
+      <div>Kontribusi</div>
+      <div>Helpful</div>
+      <div>Trust Score</div>
+    </div>
+    <div id="lbTableBody"></div>
+  </div>
+
+  <!-- CTA -->
+  <div class="card" style="text-align:center;margin-top:1.5rem;padding:2.5rem;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:40px;height:40px;margin:0 auto 1rem;display:block;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <h3>Mulai Berkontribusi</h3>
+    <p style="max-width:360px;margin:0.75rem auto 1.5rem;font-size:0.875rem;">Login dan laporkan nomor penipu untuk membantu masyarakat Indonesia. Setiap laporan valid meningkatkan trust score Anda.</p>
+    <button class="btn btn-primary btn-lg" onclick="openLoginModal()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Bergabung Sekarang
+    </button>
+  </div>
+</div>
+
+<!-- Login Modal -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal">
+    <div class="modal-head"><h3>Masuk ke ceknomor.id</h3><button class="modal-close" onclick="closeLoginModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+    <button class="btn" style="width:100%;background:#fff;color:#1F2937;border:1px solid #E5E7EB;padding:0.75rem;font-size:0.9375rem;border-radius:var(--r-lg);gap:0.625rem;" onclick="loginWithGoogle()">
+      <svg viewBox="0 0 24 24" style="width:18px;height:18px;flex-shrink:0;"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+      Masuk dengan Google
+    </button>
+  </div>
+</div>
+
+<div class="mobile-drawer" id="mobileDrawer">
+  <div style="display:flex;align-items:center;justify-content:space-between;">
+    <a href="/" class="logo"><div class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><span class="logo-name">cek<span>nomor</span>.id</span></a>
+    <button onclick="toggleDrawer()" class="btn btn-ghost btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  </div>
+  <ul class="mobile-drawer-nav">
+    <li><a href="/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Beranda</a></li>
+    <li><a href="/trending/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>Trending</a></li>
+    <li><a href="/leaderboard/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 010-5H6"/><path d="M18 9h1.5a2.5 2.5 0 000-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0012 0V2z"/></svg>Leaderboard</a></li>
+  </ul>
+</div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+<script src="/assets/js/icons.js"></script>
+<script src="/assets/js/mock-data.js"></script>
+<script src="/assets/js/app.js"></script>
+<script>
+const trophySVG = [
+  `<svg class="podium-rank-icon r1" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.09 6.26L20 9.27l-4.5 4.37 1.09 6.36L12 17.27 7.41 20l1.09-6.36L4 9.27l5.91-.91L12 2z"/></svg>`,
+  `<svg class="podium-rank-icon r2" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.09 6.26L20 9.27l-4.5 4.37 1.09 6.36L12 17.27 7.41 20l1.09-6.36L4 9.27l5.91-.91L12 2z"/></svg>`,
+  `<svg class="podium-rank-icon r3" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.09 6.26L20 9.27l-4.5 4.37 1.09 6.36L12 17.27 7.41 20l1.09-6.36L4 9.27l5.91-.91L12 2z"/></svg>`,
+];
+
+document.addEventListener('DOMContentLoaded', () => {
+  fetch('/api/leaderboard.php')
+    .then(res => res.json())
+    .then(data => {
+      if (data.leaderboard) {
+        renderPodium(data.leaderboard);
+        renderTable(data.leaderboard);
+      }
+    })
+    .catch(err => console.error("Failed to fetch leaderboard:", err));
+});
+
+function renderPodium(contributors) {
+  const grid = document.getElementById('podiumGrid');
+  if (!grid) return;
+  contributors.slice(0,3).forEach((c, i) => {
+    const div = document.createElement('div');
+    div.className = `podium-card podium-${i+1}`;
+    
+    // Generate avatar fallback if no avatar_url
+    const avatarHtml = c.avatar_url 
+      ? `<img src="${c.avatar_url}" alt="avatar" referrerpolicy="no-referrer" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">`
+      : `<div style="width:100%;height:100%;border-radius:50%;background:linear-gradient(135deg,var(--primary),#8B5CF6);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.5rem;">${c.name.charAt(0).toUpperCase()}</div>`;
+
+    div.innerHTML = `
+      <div class="podium-avatar">
+        ${trophySVG[i]}
+        ${avatarHtml}
+      </div>
+      <div class="podium-name">${c.name}</div>
+      <div class="podium-score">${c.badge || 'Member'}</div>
+      <div class="podium-contrib">${DataHelper.formatNumber(c.contributions)} kontribusi</div>
+      <div><span class="trust-pill trust-${c.trust_score >= 90 ? 'top' : c.trust_score >= 70 ? 'trusted' : 'member'}">Trust ${c.trust_score}</span></div>
+    `;
+    grid.appendChild(div);
+  });
+}
+
+function renderTable(contributors) {
+  const body = document.getElementById('lbTableBody');
+  if (!body) return;
+  contributors.forEach((c, i) => {
+    const tsColor = c.trust_score >= 90 ? 'var(--c-aman)' : c.trust_score >= 70 ? 'var(--c-waspada)' : 'var(--t-3)';
+    const row = document.createElement('div');
+    row.className = 'lb-row';
+    
+    const avatarHtml = c.avatar_url 
+      ? `<img src="${c.avatar_url}" alt="avatar" referrerpolicy="no-referrer" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">`
+      : `<div style="width:100%;height:100%;border-radius:50%;background:var(--bg-3);color:var(--t-2);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:1rem;">${c.name.charAt(0).toUpperCase()}</div>`;
+
+    row.innerHTML = `
+      <div class="lb-rank" style="color:${i<3?['#EAB308','#94A3B8','#B45309'][i]:'var(--t-3)'};">${c.rank}</div>
+      <div class="lb-user">
+        <div class="lb-avatar">${avatarHtml}</div>
+        <div>
+          <div class="lb-name">${c.name}</div>
+          <div class="lb-badge-wrap"><span class="trust-pill trust-${c.trust_score >= 90 ? 'top' : c.trust_score >= 70 ? 'trusted' : 'member'}">${c.badge || 'Member'}</span></div>
+        </div>
+      </div>
+      <div class="lb-contrib">${DataHelper.formatNumber(c.contributions)}</div>
+      <div class="lb-helpful">${DataHelper.formatNumber(c.helpful_votes)}</div>
+      <div class="trust-bar-wrap">
+        <span class="trust-num" style="color:${tsColor};">${c.trust_score}</span>
+        <div class="trust-bar"><div class="trust-fill" style="width:${c.trust_score}%;background:${tsColor};"></div></div>
+      </div>
+    `;
+    body.appendChild(row);
+  });
+}
+
+function filterPeriod(period, btn) {
+  document.querySelectorAll('#periodFilter .filter-pill').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  showToast(`Leaderboard ${period === 'all' ? 'semua waktu' : period === 'month' ? 'bulan ini' : 'minggu ini'}`, 'ok');
+}
+</script>
+</body>
+</html>

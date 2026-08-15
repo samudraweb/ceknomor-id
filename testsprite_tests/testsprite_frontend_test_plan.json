@@ -1,0 +1,885 @@
+[
+  {
+    "id": "TC001",
+    "title": "Check a phone number and review the result summary",
+    "description": "This verifies that an anonymous user can search an Indonesian phone number and see the safety summary with report details needed to decide whether to respond.",
+    "category": "Phone Number Check",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Fill a valid Indonesian phone number into the phone number field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the search"
+      },
+      {
+        "type": "action",
+        "description": "Click the result summary for the searched number"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a safety label is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify report and comment counts are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify category and latest report information are displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC002",
+    "title": "Check a bank account and review the result summary",
+    "description": "This verifies that an anonymous user can search an Indonesian bank account and see the safety label, report counts, and owner information when available before transferring money.",
+    "category": "Bank Account Check",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Select the bank account search mode"
+      },
+      {
+        "type": "action",
+        "description": "Fill a valid bank name into the bank field"
+      },
+      {
+        "type": "action",
+        "description": "Fill a valid bank account number into the account number field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the search"
+      },
+      {
+        "type": "action",
+        "description": "Click the result summary for the searched account"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a safety label is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify report and comment counts are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify owner information is displayed when available"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC003",
+    "title": "Check a bank account and review owner and risk details",
+    "description": "An anonymous consumer can search an Indonesian bank account and see the resulting safety label, owner information when available, and report history before transferring money.",
+    "category": "Community Reporting",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Fill in a suspicious Indonesian bank account in the bank account search field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the search"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the search result summary is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the safety label and owner information are displayed when available"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC004",
+    "title": "Check a phone number and open the detailed history",
+    "description": "This verifies that searching a phone number leads to a detailed result page where the user can review report history and community feedback before deciding whether to reply.",
+    "category": "Phone Number Check",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Fill a valid Indonesian phone number into the phone number field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the search"
+      },
+      {
+        "type": "action",
+        "description": "Click the result for the searched number"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the detailed report history is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify community comments are displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC005",
+    "title": "Check a bank account and open the detailed history",
+    "description": "This verifies that searching a bank account leads to a detailed page where the user can review account history and community feedback before transferring money.",
+    "category": "Bank Account Check",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Select the bank account search mode"
+      },
+      {
+        "type": "action",
+        "description": "Fill a valid bank name into the bank field"
+      },
+      {
+        "type": "action",
+        "description": "Fill a valid bank account number into the account number field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the search"
+      },
+      {
+        "type": "action",
+        "description": "Click the result for the searched account"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the detailed account history is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify community feedback is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC006",
+    "title": "Review report history and community comments on a result",
+    "description": "A user can open a search result and inspect the detailed report history and discussion to judge whether the number or account looks risky.",
+    "category": "Community Reporting",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Search for a known Indonesian phone number or bank account"
+      },
+      {
+        "type": "action",
+        "description": "Open the result details view"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the report history is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the community comments are displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC007",
+    "title": "Review a result with a clear safe or risky summary",
+    "description": "This verifies that a user can inspect the result page and use the displayed summary, counts, and latest report details to judge whether the item appears safe.",
+    "category": "Search Results Detail Page",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /hasil"
+      },
+      {
+        "type": "action",
+        "description": "Open a result page for an existing number or account"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the safety label is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the report count, comment count, and latest report information are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the overall risk summary is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC008",
+    "title": "Review detailed risk information after searching",
+    "description": "An anonymous user can inspect the result details after a search and use the report history and community signals to assess risk.",
+    "category": "Search Results Exploration",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Fill an Indonesian phone number into the search field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the search"
+      },
+      {
+        "type": "action",
+        "description": "Review the report history section"
+      },
+      {
+        "type": "action",
+        "description": "Review the community comments section"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify detailed report history is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify community comments are displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC009",
+    "title": "Compare trending items before checking a specific lookup",
+    "description": "A user can browse trending scam data, inspect the most discussed entries, and open a specific item to understand why it is being discussed.",
+    "category": "Trending and Popular Lookups",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /trending"
+      },
+      {
+        "type": "action",
+        "description": "Review the latest scam search trends"
+      },
+      {
+        "type": "action",
+        "description": "Open a trending item from the list"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a trending item detail view is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify discussion or search activity for the item is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC010",
+    "title": "Compare trending items before opening a result",
+    "description": "An anonymous user can browse trending scam data and open a specific item to understand its risk in the result view.",
+    "category": "Trending and Leaderboard",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /trending"
+      },
+      {
+        "type": "action",
+        "description": "Review the trending entries"
+      },
+      {
+        "type": "action",
+        "description": "Open a trending item"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the selected item opens in the result view"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the result view shows risk summary information"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC011",
+    "title": "Compare most reported entries before making a transaction",
+    "description": "A user can browse the leaderboard to compare the riskiest phone numbers or bank accounts by report volume before deciding whether to proceed.",
+    "category": "Trending and Popular Lookups",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /leaderboard"
+      },
+      {
+        "type": "action",
+        "description": "Review the most reported entries"
+      },
+      {
+        "type": "action",
+        "description": "Open a high-volume entry from the list"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the selected entry details are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the report volume or ranking context is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC012",
+    "title": "Compare most reported items before opening a result",
+    "description": "An anonymous user can browse the leaderboard and open a specific item to understand its risk in the result view.",
+    "category": "Trending and Leaderboard",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /leaderboard"
+      },
+      {
+        "type": "action",
+        "description": "Review the most reported entries"
+      },
+      {
+        "type": "action",
+        "description": "Open a leaderboard item"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the selected item opens in the result view"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the result view shows report count information"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC013",
+    "title": "Inspect trending items and open one for details",
+    "description": "This verifies that a user can browse trending scam data and open a specific item to understand its risk more deeply.",
+    "category": "Search Results Detail Page",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /trending"
+      },
+      {
+        "type": "action",
+        "description": "Review the trending list"
+      },
+      {
+        "type": "action",
+        "description": "Click a trending item"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the result detail page is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the safety label and risk summary are displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC014",
+    "title": "Inspect the leaderboard and open one entry for details",
+    "description": "This verifies that a user can browse the most reported entries and open one to review its full risk information.",
+    "category": "Search Results Detail Page",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /leaderboard"
+      },
+      {
+        "type": "action",
+        "description": "Review the ranked list"
+      },
+      {
+        "type": "action",
+        "description": "Click a ranked entry"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the result detail page is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify report totals and category information are displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC015",
+    "title": "Submit a scam report from a search result",
+    "description": "A user can report a searched phone number or bank account in a relevant category and see the contribution reflected in the result discussion.",
+    "category": "Community Reporting",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Search for a suspicious Indonesian phone number or bank account"
+      },
+      {
+        "type": "action",
+        "description": "Open the report flow from the result"
+      },
+      {
+        "type": "action",
+        "description": "Choose a relevant report category"
+      },
+      {
+        "type": "action",
+        "description": "Submit the report"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the new report contribution is displayed in the result discussion"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC016",
+    "title": "Leave an anonymous comment on a result",
+    "description": "A user can write and submit an anonymous comment about a searched number or account and see it appear in the discussion.",
+    "category": "Anonymous Comments and Voting",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /hasil"
+      },
+      {
+        "type": "action",
+        "description": "Open the comment flow"
+      },
+      {
+        "type": "action",
+        "description": "Write an anonymous comment about the current number or account"
+      },
+      {
+        "type": "action",
+        "description": "Submit the comment"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the new anonymous comment is displayed in the discussion"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC017",
+    "title": "Submit a new community report from the result page",
+    "description": "A community reporter can add a scam-related report from the result page and see the new report reflected in the discussion area.",
+    "category": "Community Contributions",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Fill an Indonesian phone number into the search field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the search"
+      },
+      {
+        "type": "action",
+        "description": "Open the report submission form"
+      },
+      {
+        "type": "action",
+        "description": "Select a relevant report category"
+      },
+      {
+        "type": "action",
+        "description": "Submit the report"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the report appears in the report history"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the community discussion reflects the new contribution"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC018",
+    "title": "Post an anonymous comment from the result page",
+    "description": "A community participant can leave an anonymous comment from the result page and see it appear in the discussion thread.",
+    "category": "Community Contributions",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Fill an Indonesian phone number into the search field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the search"
+      },
+      {
+        "type": "action",
+        "description": "Open the anonymous comment form"
+      },
+      {
+        "type": "action",
+        "description": "Fill a comment into the comment field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the comment"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the new anonymous comment is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the discussion thread updates with the new comment"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC019",
+    "title": "Submit a community report and see it reflected in the discussion",
+    "description": "This verifies that a user can add a new anonymous scam, spam, or debt-collector report from the result page and see the contribution appear in the community discussion.",
+    "category": "Search Results Detail Page",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /hasil"
+      },
+      {
+        "type": "action",
+        "description": "Open a result page for an existing number or account"
+      },
+      {
+        "type": "action",
+        "description": "Submit a new report in a relevant category"
+      },
+      {
+        "type": "action",
+        "description": "Add supporting report details"
+      },
+      {
+        "type": "action",
+        "description": "Submit the report"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the new report appears in the report history"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the report totals update"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC020",
+    "title": "Vote on a community comment",
+    "description": "A user can mark an existing comment as helpful or not helpful and see the community feedback update on the result page.",
+    "category": "Anonymous Comments and Voting",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /hasil"
+      },
+      {
+        "type": "action",
+        "description": "Find an existing comment"
+      },
+      {
+        "type": "action",
+        "description": "Mark the comment as helpful or not helpful"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the comment feedback update is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC021",
+    "title": "Post an anonymous comment and vote on a result",
+    "description": "This verifies that a user can leave an anonymous comment on a result page and mark community feedback as helpful or not helpful.",
+    "category": "Search Results Detail Page",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /hasil"
+      },
+      {
+        "type": "action",
+        "description": "Open a result page for an existing number or account"
+      },
+      {
+        "type": "action",
+        "description": "Write an anonymous comment"
+      },
+      {
+        "type": "action",
+        "description": "Submit the comment"
+      },
+      {
+        "type": "action",
+        "description": "Vote on a community comment"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the new comment appears in the discussion"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the feedback vote is reflected"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC022",
+    "title": "Browse scam-prevention articles and open one to read",
+    "description": "A content reader can browse the article list and open a scam-prevention article to get guidance that supports safer checking behavior.",
+    "category": "Anonymous Comments and Voting",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /artikel"
+      },
+      {
+        "type": "action",
+        "description": "Browse the available scam-prevention articles"
+      },
+      {
+        "type": "action",
+        "description": "Open a scam-prevention article"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the article content is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify scam-prevention guidance is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC023",
+    "title": "Read a scam-prevention article",
+    "description": "A content reader can browse the article list, open an article, and read guidance for safer checking behavior.",
+    "category": "Educational Articles",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /artikel"
+      },
+      {
+        "type": "action",
+        "description": "Browse the article listings"
+      },
+      {
+        "type": "action",
+        "description": "Open an article of interest"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the article content is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify scam-prevention guidance is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC024",
+    "title": "Use article guidance to support safer checking behavior",
+    "description": "A content reader can open an educational article and use it to support a safer phone or bank account check from the home search flow.",
+    "category": "Educational Articles",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /artikel"
+      },
+      {
+        "type": "action",
+        "description": "Open a related education page about safer transfers or checking behavior"
+      },
+      {
+        "type": "action",
+        "description": "Review the guidance"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Fill an Indonesian bank account number into the search field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the search"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the result page displays a safety label"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the result page displays information needed to decide whether to proceed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC025",
+    "title": "Handle an unsupported lookup input gracefully",
+    "description": "A user who enters an invalid or unsupported phone number or bank account sees a validation message instead of a misleading result.",
+    "category": "Community Reporting",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Enter an invalid or unsupported phone number or bank account"
+      },
+      {
+        "type": "action",
+        "description": "Submit the search"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a validation message is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify no misleading result summary is displayed"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC026",
+    "title": "Handle an unsupported phone number input",
+    "description": "An anonymous user can recognize that an invalid or unsupported phone number is rejected before a search is performed.",
+    "category": "Home Search Flows",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Fill an invalid phone number into the search field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the search"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a validation error is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify search results are not shown"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC027",
+    "title": "Handle an unsupported bank account input",
+    "description": "An anonymous user can recognize that an invalid or unsupported bank account is rejected before a search is performed.",
+    "category": "Home Search Flows",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Fill an invalid bank account number into the search field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the search"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a validation error is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify search results are not shown"
+      }
+    ],
+    "priority": "Low"
+  }
+]

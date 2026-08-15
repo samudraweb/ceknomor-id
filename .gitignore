@@ -1,0 +1,23 @@
+# Security configuration
+/config/database.php
+/config/env.php
+/config/redis.php
+/.env
+/sql/
+/*.log
+/logs/
+
+# Dependencies
+/node_modules/
+/vendor/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+testsprite_tests/tmp/
+testsprite_tests/tmp/config.json
